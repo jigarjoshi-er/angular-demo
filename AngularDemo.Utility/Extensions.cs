@@ -19,9 +19,7 @@ namespace AngularDemo.Utility
                 return Guid.Empty;
             }
 
-            Guid id;
-
-            if(Guid.TryParse(userId, out id))
+            if (Guid.TryParse(userId, out Guid id))
             {
                 return id;
             }

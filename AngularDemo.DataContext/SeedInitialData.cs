@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using AngularDemo.Models;
+using System.IO;
+using System.Web.Hosting;
 
 namespace AngularDemo.DataContext
 {
@@ -27,6 +29,9 @@ namespace AngularDemo.DataContext
             roleManager.Create(new ApplicationRole { Name = "Office Staff" });
 
             userManager.AddToRole(user.Id, "Admin");
+
+            string query = File.ReadAllText(HostingEnvironment.MapPath("~/App_Data/Initial-Data.sql"));
+            context.Database.ExecuteSqlCommand(query);
 
             base.Seed(context);
         }

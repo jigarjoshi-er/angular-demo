@@ -9,19 +9,19 @@ import { LeadComponent } from './lead/lead.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-	{
-		path: '', component: LayoutComponent, canActivate: [AuthGuard],
-		children: [
-			{ path: '', component: DashboardComponent, canActivate: [AuthGuard] },
-			{ path: 'enquiry', component: LeadComponent, canActivate: [AuthGuard] }
-		]
-	},
-	{ path: 'login', component: LoginComponent },
-	{ path: 'register', component: RegisterComponent }
+    {
+        path: '', component: LayoutComponent, canActivate: [AuthGuard],
+        children: [
+            { path: '', component: DashboardComponent },
+            { path: 'enquiry', component: LeadComponent }
+        ]
+    },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

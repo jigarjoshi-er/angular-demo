@@ -80,6 +80,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -89,12 +90,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BaseRepository.cs" />
+    <Compile Include="Base\IBaseRepository.cs" />
+    <Compile Include="LookupRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AngularDemo.DataContext\AngularDemo.DataContext.csproj">
+      <Project>{C76BB6AC-01C0-4FA1-9B86-3747BC5FB8B0}</Project>
+      <Name>AngularDemo.DataContext</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AngularDemo.Models\AngularDemo.Models.csproj">
       <Project>{a9aa266c-d12f-4707-b9ec-beafcccc8e38}</Project>
       <Name>AngularDemo.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AngularDemo.Utility\AngularDemo.Utility.csproj">
+      <Project>{A047B088-2C23-489F-8365-EF8C45D61513}</Project>
+      <Name>AngularDemo.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\AngularDemo.ViewModels\AngularDemo.ViewModels.csproj">
       <Project>{0cb7d9bf-febf-4843-9eb3-be2dc63fdb26}</Project>

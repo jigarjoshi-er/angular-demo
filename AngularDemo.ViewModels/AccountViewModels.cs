@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace AngularDemo.ViewModels
 {
@@ -38,5 +39,44 @@ namespace AngularDemo.ViewModels
         public string LoginProvider { get; set; }
 
         public string ProviderKey { get; set; }
+    }
+
+    public abstract class DataTableSearch : IDataTableSearch
+    {
+        public int Draw { get; set; }
+        public int Start { get; set; }
+        public int Length { get; set; }
+        public Guid? BranchId { get; set; }
+    }
+
+    public class Search : DataTableSearch { }
+
+    public class DataTableResult<T> : IDataTableResult<T>
+    {
+        public DataTableResult() { }
+
+        public DataTableResult(DataTableResult<T> dataTableResult)
+        {
+            Data = dataTableResult.Data;
+            RecordsFiltered = dataTableResult.RecordsFiltered;
+            Draw = dataTableResult.Draw;
+        }
+
+        public int Draw { get; set; }
+        public int RecordsTotal => RecordsFiltered;
+        public int RecordsFiltered { get; set; }
+        public List<T> Data { get; set; } = new List<T>();
+    }
+
+    public class DropDown
+    {
+        public Guid Value { get; set; }
+        public string Text { get; set; }
+        public bool Disabled { get; set; }
+        public bool Selected { get; set; }
+        public string Type { get; set; }
+        //public LookUpType? Type { get; set; }
+
+        //public string TypeName => Type?.ToString().Replace('_', ' ');
     }
 }

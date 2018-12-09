@@ -1,3 +1,173 @@
-<p>
-  lead works!
-</p>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-title-box">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-sm btn-custom waves-effect" (click)="addNew()" *ngIf="listView">
+                    <i class="mdi mdi-plus"></i> <span>Add Enquiry</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-custom waves-effect" (click)="backToList()" *ngIf="!listView">
+                    <i class="mdi mdi-arrow-left"></i> <span>Back To List</span>
+                </button>
+            </div>
+            <h4 class="page-title">Enquiry</h4>
+        </div>
+    </div>
+</div>
+
+<div class="row" [hidden]="!listView">
+    <div class="col-md-12">
+        <div class="card m-b-30">
+            <h5 class="card-header">Enquiry List</h5>
+            <div class="card-body">
+                <table id="tblEnquiry" class="table table-bordered table-striped"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" [hidden]="listView">
+    <div class="col-md-12">
+        <div class="card m-b-30">
+            <h5 class="card-header">Save Enquiry</h5>
+            <div class="card-body">
+                <form [formGroup]="enquiryForm" (ngSubmit)="save();" novalidate>
+                    <div class="row clearfix">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="txtDate" aria-required="true">Date</label>
+                                <input type="text" id="txtDate" class="form-control" bsDatepicker formControlName="Date"
+                                    placeholder="Select Enquiry Date" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                    [ngClass]="{ 'is-invalid': (form.Date.dirty || submitted) && form.Date.errors }" />
+                                <div *ngIf="(form.Date.dirty || submitted) && form.Date.errors" class="invalid-feedback">
+                                    <span *ngIf="form.Date.errors.required">Please Select Date</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="txtCode">Enquiry No.</label>
+                                <input type="text" id="txtCode" class="form-control" formControlName="Number"
+                                    placeholder="Auto Generated" readonly />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="txtRegNo" aria-required="true">Business Name</label>
+                                <input type="text" id="txtRegNo" class="form-control" formControlName="BusinessName"
+                                    placeholder="Enter Business Name" [ngClass]="{ 'is-invalid': (form.BusinessName.dirty || submitted) && form.BusinessName.errors }" />
+                                <div *ngIf="(form.BusinessName.dirty || submitted) && form.BusinessName.errors" class="invalid-feedback">
+                                    <span *ngIf="form.BusinessName.errors.required">Please Enter Business Name</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="txtPhoneNo" aria-required="true">Contact Person</label>
+                                <input type="text" id="txtPhoneNo" class="form-control" formControlName="ContactPerson"
+                                    placeholder="Enter Contact Person Name" [ngClass]="{ 'is-invalid': (form.ContactPerson.dirty || submitted) && form.ContactPerson.errors }" />
+                                <div *ngIf="(form.ContactPerson.dirty || submitted) && form.ContactPerson.errors" class="invalid-feedback">
+                                    <span *ngIf="form.ContactPerson.errors.required">Please Enter Contact Person Name</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="txtAddress1" aria-required="true">Primary Contact No.</label>
+                                <input type="text" id="txtAddress1" class="form-control" formControlName="PrimaryContactNumber"
+                                    placeholder="Enter Primary Contact Number" [ngClass]="{ 'is-invalid': (form.PrimaryContactNumber.dirty || submitted) && form.PrimaryContactNumber.errors }" />
+                                <div *ngIf="(form.PrimaryContactNumber.dirty || submitted) && form.PrimaryContactNumber.errors"
+                                    class="invalid-feedback">
+                                    <span *ngIf="form.PrimaryContactNumber.errors.required">Please Enter Primary
+                                        Contact No.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="txtAddress2">Optional Contact Number</label>
+                                <input type="text" id="txtAddress2" class="form-control" formControlName="OptionalContactNumber"
+                                    placeholder="Enter Optional Contact Number" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="txtAddress2">Email</label>
+                                <input type="text" id="txtAddress2" class="form-control" formControlName="Email"
+                                    placeholder="Enter Email" [ngClass]="{ 'is-invalid': (form.Email.dirty || submitted) && form.Email.errors }" />
+                                <div *ngIf="(form.Email.dirty || submitted) && form.Email.errors" class="invalid-feedback">
+                                    <span *ngIf="form.Email.errors.email">Please Enter Valid Email</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="txtAddress2" aria-required="true">Business Address</label>
+                                <input type="text" id="txtAddress2" class="form-control" formControlName="BusinessAddress"
+                                    placeholder="Enter Business Address" [ngClass]="{ 'is-invalid': (form.BusinessAddress.dirty || submitted) && form.BusinessAddress.errors }" />
+                                <div *ngIf="(form.BusinessAddress.dirty || submitted) && form.BusinessAddress.errors"
+                                    class="invalid-feedback">
+                                    <span *ngIf="form.BusinessAddress.errors.required">Please Enter Business Address</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="ddlCity" aria-required="true">City</label>
+                                <select type="text" id="ddlCity" class="form-control" formControlName="CityId"
+                                    [ngClass]="{ 'is-invalid': (form.CityId.dirty || submitted) && form.CityId.errors }">
+                                    <option value="null">Select City</option>
+                                    <option *ngFor="let city of cities" value={{city.Value}}>
+                                        {{city.Text}}
+                                    </option>
+                                </select>
+                                <div *ngIf="(form.CityId.dirty || submitted) && form.CityId.errors" class="invalid-feedback">
+                                    <span *ngIf="form.CityId.errors.required">Please Select City</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="ddlCity" aria-required="true">State</label>
+                                <select type="text" id="ddlCity" class="form-control" formControlName="StateId"
+                                    [ngClass]="{ 'is-invalid': (form.StateId.dirty || submitted) && form.StateId.errors }">
+                                    <option value="null">Select State</option>
+                                    <option *ngFor="let state of states" value={{state.Value}}>
+                                        {{state.Text}}
+                                    </option>
+                                </select>
+                                <div *ngIf="(form.StateId.dirty || submitted) && form.StateId.errors" class="invalid-feedback">
+                                    <span *ngIf="form.StateId.errors.required">Please Select State</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" for="ddlCountry" aria-required="true">Country</label>
+                                <select type="text" id="ddlCountry" class="form-control" formControlName="CountryId"
+                                    [ngClass]="{ 'is-invalid': (form.CountryId.dirty || submitted) && form.CountryId.errors }">
+                                    <option value="null">Select Country</option>
+                                    <option *ngFor="let country of countries" value={{country.Value}}>
+                                        {{country.Text}}
+                                    </option>
+                                </select>
+                                <div *ngIf="(form.CountryId.dirty || submitted) && form.CountryId.errors" class="invalid-feedback">
+                                    <span *ngIf="form.CountryId.errors.required">Please Select Country</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" class="btn btn-sm btn-custom waves-effect">
+                                <i class="mdi mdi-check"></i> <span>Save</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

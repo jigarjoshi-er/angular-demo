@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "../node_modules/jquery-toast-plugin/dist/jquery.toast.min.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+@import "../src/theme/css/icons.css";
+@import "../src/theme/css/style.css";
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
 .invalid-feedback {
-  font-size: 90%;
+  font-size: 13px;
 }
 
 input.ng-dirty.ng-invalid + .invalid-feedback {
@@ -11,3 +18,94 @@ input.ng-dirty.ng-invalid + .invalid-feedback {
 .ng-submitted .invalid-feedback {
   display: block;
 }
+
+.form-control,
+.input-group-text {
+  border-radius: 0;
+}
+
+[aria-required="true"]::after {
+  content: " *";
+  color: #f00;
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+// alert style
+.close-jq-toast-single {
+  position: absolute;
+  top: 3px;
+  right: 7px;
+  font-size: 14px;
+  cursor: pointer;
+  width: unset;
+  height: unset;
+  background-color: unset;
+  line-height: unset;
+}
+
+/* Loader */
+#wait {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background-color: #fff;
+  opacity: 0.8;
+  display: none;
+}
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+
+.loader {
+  top: calc(50% - 30px);
+  font-size: 10px;
+  margin: 0px auto;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(81, 168, 255, 0.2);
+  border-right: 1.1em solid rgba(81, 168, 255, 0.2);
+  border-bottom: 1.1em solid rgba(81, 168, 255, 0.2);
+  border-left: 1.1em solid #02c0ce;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* Loader End */
